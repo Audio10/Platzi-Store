@@ -1,4 +1,4 @@
-<input type="text" [(ngModel)]="title">
+<input type="text" [(ngModel)]="title" />
 {{ title }}
 
 <div *ngIf="title === 'nicolas'; else elseBlock">
@@ -14,3 +14,9 @@
     <button (click)="deleteItem(i)">delete</button>
   </li>
 </ul>
+
+<div *ngFor="let product of products">
+  {{ product.title }}
+  <img [src]="product.image" alt="" />
+  {{ product.price }}
+</div>
