@@ -42,7 +42,7 @@ export class AppModule { }
 
 **Component**
 
-```
+```javascript
 import { Component } from '@angular/core';
 
 @Component({
@@ -53,5 +53,21 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'platzi-store';
 }
+```
+
+## 2.- Uso de ngIf
+
+Sirve para mostrar condicionales dentro de un template.
+
+**Template**
+
+```html
+<div *ngIf="title === 'nicolas'; else elseBlock">
+  Es comple la condicion
+</div>
+
+<div #elseBlock>
+  No se cumple la condicion.
+</div>
 ```
 
