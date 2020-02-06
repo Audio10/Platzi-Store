@@ -8,7 +8,7 @@ Para demostrar esta funcionalidad se ocupa **ngModel** la cual es una directiva 
 
 **Template**
 
-```javascript
+```html
 <input type="text" [(ngModel)]="title">
 {{ title }}
 ```
@@ -55,19 +55,24 @@ export class AppComponent {
 }
 ```
 
-## 2.- Uso de ngIf
+## 2.- Uso de ngIf 
 
-Sirve para mostrar condicionales dentro de un template.
+[Documentación]: https://angular.io/api/common/NgIf#description	"Documentación."
+
+Sirve para mostrar condicionales dentro de un template. Cuenta con bloques como **then(true) **, **else(false)** 
 
 **Template**
 
 ```html
+//1.- Condicion si es true
 <div *ngIf="title === 'nicolas'; else elseBlock">
   Es comple la condicion
 </div>
-
-<div #elseBlock>
-  No se cumple la condicion.
-</div>
 ```
+
+## 3.- Uso de ngFor add y delete.
+
+[Documentación]: https://angular.io/api/common/NgForOf	"Documentación"
+
+Sirve para recorrer elementos iterables dentro del template.
 
