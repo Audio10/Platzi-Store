@@ -394,3 +394,22 @@ ngOnDestroy() {
     console.log('5. ngOnDestroy');
   }
 ```
+
+## 9.- Estilos para mostrar la lista de productos
+
+**Notas:**
+
+- Cada componente tiene un array de archivos **css**.
+- Los estilos globales van en `style.scss`
+
+
+
+## 10.- Uso de ng generate y ng lint
+
+```
+ng g component
+ng g interface
+ng lint
+ng lint --fix
+```
+
