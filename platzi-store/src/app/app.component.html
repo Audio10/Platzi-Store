@@ -6,17 +6,16 @@
 </div>
 
 <div [ngSwitch]="title">
-<p *ngSwitchCase="'nicolas'">
-  Nicolas
-</p>
-<p *ngSwitchCase="'julian'">
-  Julian
-</p>
-<p *ngSwitchDefault>
-  Nombre de una persona.
-</p>
+  <p *ngSwitchCase="'nicolas'">
+    Nicolas
+  </p>
+  <p *ngSwitchCase="'julian'">
+    Julian
+  </p>
+  <p *ngSwitchDefault>
+    Nombre de una persona.
+  </p>
 </div>
-
 
 <button (click)="addItem()">Add item</button>
 
@@ -28,6 +27,10 @@
   </li>
 </ul>
 
-<div>
-  <app-product *ngFor="let product of products" [product]="product" (productClicked)="clickProduct($event)"></app-product>
+<div class="product__grid">
+  <app-product
+    *ngFor="let product of products"
+    [product]="product"
+    (productClicked)="clickProduct($event)"
+  ></app-product>
 </div>
