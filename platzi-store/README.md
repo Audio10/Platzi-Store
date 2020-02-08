@@ -495,3 +495,43 @@ Los módulos especiales son core y shared.
 
 - Core: guarda todos los servicios y componentes que usaremos a lo largo de todos los otros módulos.
 - Shared: podemos almacenar componentes y servicios compartidos.
+
+## 15.- Creando rutas en Angular
+
+Se deben asignar en el **app-routing.module.ts**
+
+```javascript
+import { DemoComponent } from './components/demo/demo.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ProductsComponent } from './components/products/products.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+
+
+const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'products',
+    component: ProductsComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'demo',
+    component: DemoComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
