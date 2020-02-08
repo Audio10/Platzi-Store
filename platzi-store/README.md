@@ -124,7 +124,7 @@ export class AppComponent {
 - `*ngFor` permite al obtención del index mediante la variable `index`
 - Los eventos se escuchan usando la notación `(Evento)=Funcion`
 
-## 4.- Uso de ngFor para recorrer objetos
+## 4.- Uso de ngFor para recorrer objetos.
 
 **Interface**
 
@@ -231,3 +231,6 @@ export class AppComponent {
 - Los objetos que no son iterables generaran un error.
 - Al cambiar una atributo del **html** se ocupan llaves cuadradas por ejemplo con `[src]="product.image"`
 
+
+
+## 5.- Uso de ngSwtich

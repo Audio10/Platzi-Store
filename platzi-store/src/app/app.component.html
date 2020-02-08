@@ -2,8 +2,21 @@
 {{ title }}
 
 <div *ngIf="title === 'nicolas'; else elseBlock">
-  Es comple la condicion
+  Es cumple la condicion
 </div>
+
+<div [ngSwitch]="title">
+<p *ngSwitchCase="'nicolas'">
+  Nicolas
+</p>
+<p *ngSwitchCase="'julian'">
+  Julian
+</p>
+<p *ngSwitchDefault>
+  Nombre de una persona.
+</p>
+</div>
+
 
 <button (click)="addItem()">Add item</button>
 
