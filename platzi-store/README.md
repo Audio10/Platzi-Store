@@ -484,3 +484,14 @@ export class HighlightDirective {
 
 }
 ```
+
+## 14.- Introducción al NgModule
+
+Los módulos y rutas sirven para dividir y abstraer mejor por dominio la aplicación.
+
+Los componentes que hacen parte de una página en particular se pueden encapsular en un mismo módulo.
+
+Los módulos especiales son core y shared.
+
+- Core: guarda todos los servicios y componentes que usaremos a lo largo de todos los otros módulos.
+- Shared: podemos almacenar componentes y servicios compartidos.
