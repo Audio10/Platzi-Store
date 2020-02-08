@@ -234,3 +234,107 @@ export class AppComponent {
 
 
 ## 5.- Uso de ngSwtich
+
+```html
+<div [ngSwitch]="title">
+<p *ngSwitchCase="'nicolas'">
+  Nicolas
+</p>
+<p *ngSwitchCase="'julian'">
+  Julian
+</p>
+<p *ngSwitchDefault>
+  Nombre de una persona.
+</p>
+</div>
+```
+
+**Notas:**
+
+- Se ocupa la directiva ngSwitch con corchetes. `[ngSwitch]="variable"`
+
+- Si la condición es un String va con `''`
+
+  
+
+## 6.- ¿Qué son los componentes y decoradores?
+
+**Se puede generar con el CLI con la siguiente sentencia.**
+
+```bash
+ng g ccomponent NOMBRE
+```
+
+**Notas:**
+
+- Extiende de Component.
+- Debe ser especificado en el app.module.
+
+# 7.- Uso de Inputs y Outputs
+
+![image-20200208135326298](C:\Users\claud\AppData\Roaming\Typora\typora-user-images\image-20200208135326298.png)
+
+### Input
+
+Es la forma de hacer **Property Binding**. Consiste en pasar un parámetro del componente padre al hijo mediante propiedades.
+
+**Componente.ts**
+
+```
+@Input() product: Product;
+```
+
+**Padre.html**
+
+El padre envia la propiedad mediante `[Input]="DATA"`
+
+```html
+<div>
+  <app-product *ngFor="let product of products" [product]="product"></app-product>
+</div>
+```
+
+### Output
+
+Es la forma de hacer **Event Binding**. Consiste en enviar información del Componente a su padre, mediante eventos emitidos por el componente hijo.
+
+**Componente.ts**
+
+```javascript
+@Output() productClicked: EventEmitter<string> = new EventEmitter();
+
+// Cuando se invoque este metodo el componente emitira el evento mediante el Output.
+ addCart() {
+    console.log('Agregar al carrito');
+    this.productClicked.emit(this.product.id);
+  }
+```
+
+
+
+**ComponentePadrHTML**
+
+```html
+<div>
+    // Cuando se emita un evento de productClicked llamas al metodo del padre clickProduct.
+  <app-product *ngFor="let product of products" (productClicked)="clickProduct($event)"></app-product>
+</div>
+```
+
+
+
+**ComponentePadre.ts**
+
+```
+  clickProduct(id: string) {
+    console.log('product');
+    console.log(id);
+  }
+```
+
+
+
+**Notas:**
+
+- Las propiedades se pasa mediante `[]`
+- Los eventos se pasan mediante `()`
