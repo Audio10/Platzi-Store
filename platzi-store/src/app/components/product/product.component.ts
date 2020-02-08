@@ -14,6 +14,8 @@ export class ProductComponent implements OnInit {
   @Output() productClicked: EventEmitter<string> = new EventEmitter();
 
 
+  today = new Date();
+
   constructor() { }
 
   ngOnInit() { }

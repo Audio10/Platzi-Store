@@ -413,3 +413,48 @@ ng lint
 ng lint --fix
 ```
 
+## 11.- Usando los pipes de Angular
+
+Son filtros que se aplican a los elementos de los componentes.
+
+[PipeFechas](https://angular.io/api/common/DatePipe)
+
+## 12.- Generar Pipe
+
+### Generar pipe
+
+```
+ng g pipe __RUTA__
+```
+
+## **Construyendo una directiva propia**
+
+```
+ng g d __RUTA__
+```
+
+Lad directivas se especifican con el decorador **Directive** y utiliza inyeccion de dependencias mediante ElementRef.
+
+Este ayuda a seleccionar el elemento nativo que recibe la direcctiva. En este caso se va a cambiar el color del background.
+
+```
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+
+  constructor(
+    element: ElementRef
+  ) {
+      element.nativeElement.style.backgroundColor = 'red';
+  }
+
+}
+```
+
+**Notas:**
+
+- Es mejor crear pipes que funciones en el JavaScript.
+
