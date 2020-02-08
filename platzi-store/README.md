@@ -270,7 +270,7 @@ ng g ccomponent NOMBRE
 - Extiende de Component.
 - Debe ser especificado en el app.module.
 
-# 7.- Uso de Inputs y Outputs
+## 7.- Uso de Inputs y Outputs
 
 ![image-20200208135326298](C:\Users\claud\AppData\Roaming\Typora\typora-user-images\image-20200208135326298.png)
 
@@ -338,3 +338,59 @@ Es la forma de hacer **Event Binding**. Consiste en enviar información del Comp
 
 - Las propiedades se pasa mediante `[]`
 - Los eventos se pasan mediante `()`
+- Para pasar el valor emitido por un Output se ocupa `$event`
+
+## 8.-Ciclo de vida de los componentes!
+
+### Constructor.
+
+Primer hook de angular es el que se ejecuta siempre primero al inicializar un componente.
+
+```
+constructor() {
+        console.log('1. constructor');
+}
+```
+
+### OnChanges
+
+Detecta los cambios y recibe el estado **anterior** y el **nuevo**.
+
+```
+ ngOnChanges(changes: SimpleChanges) {
+     console.log('2. ngOnChanges');
+     console.log(changes);
+ }
+```
+
+### ngOnInit
+
+Se ejecuta solo una vez y es cuando el componente se pone en pantalla.
+
+**En este hook es donde se implementan las llamadas a los servicios de datos**
+
+```
+ngOnInit() {
+    console.log('3. ngOnInit');
+  }
+```
+
+### ngDoCheck
+
+Es el hook especializado para detectar cambios a tu manera es decir OnChanges es la forma que angular tiene nativamente, pero te da la opción de que tu cheques por tu cuenta.
+
+```
+ngDoCheck() {
+    console.log('4. ngDoCheck');
+}
+```
+
+### ngOnDestroy
+
+Se ejecuta cuando un componente es destruido.
+
+```
+ngOnDestroy() {
+    console.log('5. ngOnDestroy');
+  }
+```
