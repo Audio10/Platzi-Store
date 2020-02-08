@@ -458,3 +458,29 @@ export class HighlightDirective {
 
 - Es mejor crear pipes que funciones en el JavaScript.
 
+## 13.-Construyendo una directiva propia
+
+```
+ng g d __RUTA__
+```
+
+Las directivas se especifican con el decorador **Directive** y utiliza inyección de dependencias mediante ElementRef.
+
+Este ayuda a seleccionar el elemento nativo que recibe la directiva. En este caso se va a cambiar el color del background.
+
+```
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+
+  constructor(
+    element: ElementRef
+  ) {
+      element.nativeElement.style.backgroundColor = 'red';
+  }
+
+}
+```
