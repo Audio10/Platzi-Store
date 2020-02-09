@@ -511,6 +511,11 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
@@ -525,6 +530,10 @@ const routes: Routes = [
   {
     path: 'demo',
     component: DemoComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
@@ -533,5 +542,19 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+```
+
+## 16.- Usando routerLink y routerActive
+
+Para navegar entre pages se ocupa **routerLink**. Mientras que **routerActive** es una propiedad que toma un Link cuando estas sobre el.
+
+**header**
+
+```html
+<nav>
+  <a routerLink="/home" routerLinkActive="active">Home</a>
+  <a routerLink="/products" routerLinkActive="active">Products</a>
+  <a routerLink="/contact" routerLinkActive="active">Contact</a>
+</nav>
 ```
 
