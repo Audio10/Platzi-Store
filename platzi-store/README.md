@@ -558,9 +558,17 @@ Para navegar entre pages se ocupa **routerLink**. Mientras que **routerActive** 
 </nav>
 ```
 
+**Envio de parametros en routerlink** `Notacion URL/parametro`
+
+```
+<a [routerLink]="[ '/products', product.id ]">Ver detalle</a>
+```
+
+
+
 ## 17.- Servicios
 
-Los servicios son la capa encargada de aplicar las transacciones con los datos. Y estos deben ser asignados por inyección de dependencia.
+Los servicios son la capa encargada de proveer datos. Y estos deben ser asignados por inyección de dependencia.
 
 ```javascript
 import { Injectable } from '@angular/core';
@@ -661,5 +669,68 @@ export class ProductDetailComponent implements OnInit {
 **Notas:**
 
 - El Service deben ser inyectado como dependencias a los componentes que los utilizaran.
+
 - Se ocupa **ActivedRoute** para manejar parámetros en la URL.
+
 - El método **subscribe**, escucha los cambios que se hacen en los parámetros de la URL indicada por el **ActivetedRoute**.
+
+  
+
+## 18.- Vistas anidadas
+
+Para esto se genera un Layout el cual va a llevar la siguiente estructura por lo general.
+
+**Layout.html**
+
+```
+<app-header></app-header>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>
+```
+
+**Routing**
+
+Se aplica que el componente Layout va a tener hijos y esos hijos van a ser los renderizados del outlet.
+
+```javascript
+const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
+      },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      }
+    ]
+  },
+  {
+    path: 'demo',
+    component: DemoComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
+];
+```
+
