@@ -468,7 +468,7 @@ Las directivas se especifican con el decorador **Directive** y utiliza inyecció
 
 Este ayuda a seleccionar el elemento nativo que recibe la directiva. En este caso se va a cambiar el color del background.
 
-```
+```javascript
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
@@ -558,3 +558,108 @@ Para navegar entre pages se ocupa **routerLink**. Mientras que **routerActive** 
 </nav>
 ```
 
+## 17.- Servicios
+
+Los servicios son la capa encargada de aplicar las transacciones con los datos. Y estos deben ser asignados por inyección de dependencia.
+
+```javascript
+import { Injectable } from '@angular/core';
+import { Product } from '../product.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductsService {
+
+  products: Product[] = [
+    {
+      id: '1',
+      image: 'assets/images/camiseta.png',
+      title: 'Camiseta',
+      price: 80000,
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id: '2',
+      image: 'assets/images/hoodie.png',
+      title: 'Hoodie',
+      price: 80000,
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id: '3',
+      image: 'assets/images/mug.png',
+      title: 'Mug',
+      price: 80000,
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id: '4',
+      image: 'assets/images/pin.png',
+      title: 'Pin',
+      price: 80000,
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id: '5',
+      image: 'assets/images/stickers1.png',
+      title: 'Stickers',
+      price: 80000,
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id: '6',
+      image: 'assets/images/stickers2.png',
+      title: 'Stickers',
+      price: 80000,
+      description: 'bla bla bla bla bla'
+    },
+  ];
+  constructor() { }
+
+  getAllProducts() {
+    return this.products;
+  }
+
+  getProduct(id: string) {
+    return this.products.find(item => id === item.id);
+  }
+}
+```
+
+
+
+```javascript
+import { ProductsService } from './../../services/products.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+@Component({
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss']
+})
+export class ProductDetailComponent implements OnInit {
+
+  constructor(
+    private route: ActivatedRoute,
+    private productsService: ProductsService
+  ) { }
+
+  ngOnInit() {
+    // subscribe escucha los cambios que se hacen en los parametros.
+    this.route.params.subscribe( (params: Params) => {
+      const id = params.id;
+      const producto = this.productsService.getProduct(id);
+      console.log(producto);
+    });
+  }
+
+}
+```
+
+**Notas:**
+
+- El Service deben ser inyectado como dependencias a los componentes que los utilizaran.
+- Se ocupa **ActivedRoute** para manejar parámetros en la URL.
+- El método **subscribe**, escucha los cambios que se hacen en los parámetros de la URL indicada por el **ActivetedRoute**.
