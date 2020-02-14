@@ -734,3 +734,122 @@ const routes: Routes = [
 ];
 ```
 
+## 19.- Implementación del Lazy Loading
+
+Es modularizar los componentes de tal forma que solo se cargara lo necesario para hacer mas baja la carga.
+
+```javascript
+import { LayoutComponent } from './components/layout/layout.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { DemoComponent } from './components/demo/demo.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ProductsComponent } from './components/products/products.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule , PreloadAllModules} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        // component: HomeComponent
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
+      },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      }
+    ]
+  },
+  {
+    path: 'demo',
+    component: DemoComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
+
+**Notas:**
+
+- Se modularizo home y el routing de ese mismo se especifico que el `/` renderizaría el HomeComponent.
+- Dentro del routing generar se renderiza dinámicamente todo el modulo con una función.
+- Es importante especificar que el modulo de home utilice el CommonModule.
+
+## 20.- Creando un shared module y core module
+
+
+
+### Shared Module
+
+El **shared module** guarda todos los recursos compartidos. Guarda componentes, directivas y pipes.
+
+Para utilizarlo el componente que lo quiere ocupar debe importar el **Shared Module** (**import y declaración en imports**)  
+
+**Notas:**
+
+- Existen un elemento llamado `exports:[]` en el cual se deben referenciar los componentes, directivas o pipes que deseamos que se compartan con los demás componentes.
+- Al ocupar módulos en componentes del shared es importante importar también en este mismo.
+
+
+
+### Core Module
+
+Segmenta componentes si solo se van a compartir alrededor de toda la aplicación. Es decir por defecto va a estar en todos los módulos. Sirve para guardar servicios que tengan una sola referencia de los datos.
+
+En el van por defecto los servicios. Y se importa en el **app.module**
+
+**Notas:**
+
+- Existen un elemento llamado `providers:[]` en el cual se deben referenciar los servicios.
+
+
+
+## 21.- Guardianes
+
+
+
+Angular brinda guardianes para saber quien puede entrar en una ruta en especifico.
+
+**Crear guardián con cli**
+
+```
+ng g g admin
+```
+
+Se crea este guardian y se especifica dentro del routing de la siguiente forma.
+
+```
+ {
+        path: 'contact',
+        canActivate: [AdminGuard],
+        component: ContactComponent
+      }
+```
+
