@@ -843,7 +843,7 @@ Angular brinda guardianes para saber quien puede entrar en una ruta en especific
 ng g g admin
 ```
 
-Se crea este guardian y se especifica dentro del routing de la siguiente forma.
+Se crea este guardián y se especifica dentro del routing de la siguiente forma.
 
 ```
  {
@@ -853,3 +853,28 @@ Se crea este guardian y se especifica dentro del routing de la siguiente forma.
       }
 ```
 
+## 22.- Implementar Material
+
+**Instalación**
+
+Se instala y configura en el proyecto solo.
+
+```
+ng add @angular/material
+```
+
+
+
+### Ocupar
+
+Se debe crear un modulo compartido
+
+
+
+**Notas:**
+
+- **HammerJs** es una libreria para poder hacer reconocimiento del touch.
+
+- **browser animations** animaciones de transiciones de material.
+
+  
