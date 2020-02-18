@@ -496,6 +496,16 @@ Los módulos especiales son core y shared.
 - Core: guarda todos los servicios y componentes que usaremos a lo largo de todos los otros módulos.
 - Shared: podemos almacenar componentes y servicios compartidos.
 
+
+
+### Crear un modulo con routing
+
+```
+ng g m admin --routing
+```
+
+
+
 ## 15.- Creando rutas en Angular
 
 Se deben asignar en el **app-routing.module.ts**
@@ -896,3 +906,83 @@ npm i flexboxgrid --save --save-exact
 ```
 
 Se debe agregar al **angular.json**
+
+## 24.- Vistas con Angular schematic
+
+**Crear un modulo con routing**
+
+```
+ng g m admin --routing
+```
+
+### Para ocuparlo
+
+[Angular schematics](https://material.angular.io/guide/schematics)
+
+Se necesita instalar **material** y **cdk**
+
+```
+ng add @angular/material
+ng add @angular/cdk
+```
+
+**Generar un formulario**
+
+```
+ng generate @angular/material:address-form <component-name>
+```
+
+**Generar un nav**
+
+```
+ng generate @angular/material:navigation admin/components/nav
+```
+
+## 25.- HttpClientModule
+
+Para hacer conexiones a APIS se ocupa el modulo **HttpClienModule**
+
+```
+import { HttpClientModule } from '@angular/common/http';
+```
+
+### Servicio
+
+```
+import { Product } from 'src/app/product/components/product/product.model';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from './../../../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductsService {
+  constructor(private http: HttpClient) {}
+
+  getAllProducts() {
+    return this.http.get<Product[]>(`${environment.url_api}/products`);
+  }
+
+  getProduct(id: string) {
+    return this.http.get<Product>(`${environment.url_api}/products/${id}`);
+  }
+
+  createProduct(product: Product) {
+    return this.http.post(`${environment.url_api}/products`, product);
+  }
+
+  updateProduct(id: string, changes: Partial<Product>) {
+    return this.http.put(`${environment.url_api}/products/${id}`, changes);
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete(`${environment.url_api}/products/${id}`);
+  }
+}
+```
+
+### Variables de ambiente
+
+Las variables de ambiente viven en **environments** donde se pueden establecer e importar mediante el objeto **environment**
