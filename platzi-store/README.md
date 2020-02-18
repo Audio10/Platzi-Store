@@ -869,12 +869,30 @@ ng add @angular/material
 
 Se debe crear un modulo compartido
 
+```
+ng g m material
+```
+
+Dentro de ese modulo se importan los elementos provenientes de **Material**. Y el modulo que quiera ocupar ese elemento deberá importar este modulo general.
 
 
-**Notas:**
+
+
+
+Notas:**
 
 - **HammerJs** es una libreria para poder hacer reconocimiento del touch.
 
 - **browser animations** animaciones de transiciones de material.
 
   
+
+## 23.- Implementando flexboxgrid
+
+### Instalación
+
+```
+npm i flexboxgrid --save --save-exact
+```
+
+Se debe agregar al **angular.json**
