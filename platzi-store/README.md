@@ -948,7 +948,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 ### Servicio
 
-```
+```javascript
 import { Product } from 'src/app/product/components/product/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -986,3 +986,70 @@ export class ProductsService {
 ### Variables de ambiente
 
 Las variables de ambiente viven en **environments** donde se pueden establecer e importar mediante el objeto **environment**
+
+## 26.- Ambientes en Angular
+
+Construir **prod**. Siempre es recomendable verificar que **prod** este bien construido.
+
+```
+ng build --prod
+```
+
+### Crear un nuevo ambiente.
+
+Se agrega la configuración del entorno  en  `configurations`
+
+```
+ "stag": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stag.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+```
+
+Y en `serve` 
+
+```
+"stag": {
+              "browserTarget": "platzi-store:build:stag"
+            }
+```
+
+
+
+### Correr un ambiente desde el servidor.
+
+```
+ng serve -c=stag
+```
+
+### Generar un ambiente con build.
+
+```
+ng build -c=stag
+```
+

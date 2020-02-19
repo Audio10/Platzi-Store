@@ -1,8 +1,11 @@
-import { NavComponent } from './components/nav/nav.component';
-import { ProducctFormComponent } from './components/producct-form/producct-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ProducctFormComponent } from './components/producct-form/producct-form.component';
+import { NavComponent } from './components/nav/nav.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TableComponent } from './components/table/table.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
 
 const routes: Routes = [
   {
@@ -12,7 +15,19 @@ const routes: Routes = [
       {
         path: 'create',
         component: ProducctFormComponent
-      }
+      },
+      {
+        path: '',
+        component: DashboardComponent
+      },
+      {
+        path: 'table',
+        component: TableComponent
+      },
+      {
+        path: 'products',
+        component: ProductsListComponent
+      },
     ]
   }
 ];

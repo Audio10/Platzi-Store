@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demo.component.scss']
 })
 export class DemoComponent implements OnInit {
+  title = 'Titulo';
   items = ['nicolas', 'julian', 'perez'];
   power = 10;
 
