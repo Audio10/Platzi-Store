@@ -1214,7 +1214,7 @@ export class FormProductComponent implements OnInit {
 
 **Component.html**
 
-```
+```html
 <form [formGroup]="form" (ngSubmit)="saveProduct($event)">
   <mat-card>
     <mat-card-header>
@@ -1256,5 +1256,42 @@ export class FormProductComponent implements OnInit {
   </mat-card>
   
 </form>
+```
+
+## 30 Validaciones personalizadas
+
+Para crear validaciones se crea una carpeta llamada **utils**, en la cual se integra una clase **validators**, donde se especifican los validadores. Estos utilizan AbstractControl para traer el valor bajo el cual se creara el validador.
+
+```javascript
+import { AbstractControl } from '@angular/forms';
+
+export class MyValidators {
+  static isPriceValid(control: AbstractControl) {
+    const value = control.value;
+    console.log(value);
+    if (value > 10000) {
+      return {
+        price_invalid: true
+      };
+    }
+    return null;
+  }
+}
+```
+
+Dentro del HTML mediante ``this.form.get('price')` el cual esta envendio en una variable **priceField** se accede mediante el formulario a la propiedad harError('validador') para preguntar por la validación.
+
+```html
+ <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <input placeholder="Price" formControlName="price" matInput type="number">
+          </mat-form-field>
+          <div *ngIf="priceField.errors && form.get('price').dirty ">
+            <p *ngIf="priceField.hasError('price_invalid')">No te debes pasar de 10000 </p>
+            <p *ngIf="priceField.hasError('required')">el campo es requerido</p>
+          </div>
+        </div>
+      </div>
 ```
 
