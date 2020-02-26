@@ -1,3 +1,4 @@
+import { FormProductComponent } from './components/form-product/form-product.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -28,6 +29,10 @@ const routes: Routes = [
         path: 'products',
         component: ProductsListComponent
       },
+      {
+        path: 'products/create',
+        component: FormProductComponent
+      }
     ]
   }
 ];
