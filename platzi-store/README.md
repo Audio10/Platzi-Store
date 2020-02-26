@@ -1053,3 +1053,106 @@ ng serve -c=stag
 ng build -c=stag
 ```
 
+## 27.- Lista de inventario y detalle
+
+[Documentacion Tablas Material](https://material.angular.io/components/table/overview)
+
+## 28.- Introducción al FormControl
+
+Para ocupar formularios reactivos se importa de forms **ReactiveFormsModule.**
+
+```
+import { ReactiveFormsModule } from '@angular/forms';
+```
+
+En un NgModel si hay enlace de datos pero no permite realizar pruebas y validar datos. Mientras que en los Formularios reactivos si. 
+
+**footer.ts**
+
+```
+import { Component, OnInit } from '@angular/core';
+// Se pueden validar los formularios con Validators
+import { FormControl, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
+})
+export class FooterComponent implements OnInit {
+  emailField: FormControl;
+
+  constructor() {
+    // Un formControl cuenta con un constructos que recibe (VALORINICIAL, [VALIDADORES])
+    this.emailField = new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(10)
+    ]);
+    // cada vez que cambie (Escuchar un cambio dinamicamente)
+    // this.emailField.valueChanges.subscribe(value => {
+    //   console.log(value);
+    // });
+  }
+
+  ngOnInit() {}
+
+  sendMail() {
+    if (this.emailField.valid) {
+      console.log(this.emailField.value);
+    }
+  }
+}
+```
+
+**footer.html**
+
+```
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="box">
+          <h3>Productos</h3>
+          <ul>
+            <li>
+              <a routerLink="/products" [queryParams]="{ type: 'news' }"
+                >Nuevos Productos</a
+              >
+            </li>
+            <li>
+              <a routerLink="/products" [queryParams]="{ type: 'offer' }"
+                >En oferta</a
+              >
+            </li>
+            <li>
+              <a routerLink="/products" [queryParams]="{ type: 'latest' }"
+                >Últimos productos</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="box">
+          <h3>Acerca de PlatziStore</h3>
+          <ul>
+            <li><a routerLink="/about-us">Sobre nosotros</a></li>
+            <li><a routerLink="/stores">Nuestras tiendas</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="box">
+          <h3>Contacto</h3>
+          <mat-form-field>
+            <input matInput placeholder="Digite su correo" [formControl]="emailField" type="email">
+          </mat-form-field>
+          <button mat-raised-button [disabled]="emailField.invalid" (click)="sendMail()">enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+```
+

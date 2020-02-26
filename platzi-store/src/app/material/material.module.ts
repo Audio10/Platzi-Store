@@ -39,7 +39,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSortModule,
     MatListModule,
     LayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   exports: [
     MatButtonModule,
